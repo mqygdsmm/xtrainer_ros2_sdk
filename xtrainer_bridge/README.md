@@ -76,6 +76,14 @@ xtrainer_controller (逐点 ServoJ, rad→deg 转换, fire-and-forget)
 | `xtrainer_joint_states` | 启动 joint_states 合并节点 |
 | `xtrainer_controller` | 启动 FollowJointTrajectory action server |
 | `xtrainer_bridge_node` | 旧版单节点（已弃用，保留兼容） |
+| `cartesian_pose_bridge` | Pose/PoseStamped ↔ Dobot ServoP bridge |
+
+## Cartesian pose bridge
+
+See [CARTESIAN_POSE_BRIDGE.md](CARTESIAN_POSE_BRIDGE.md) for setup and usage.
+The bridge subscribes to a standard ROS pose, converts it to the Dobot
+`x,y,z,rx,ry,rz` representation, calls `ServoP`, and publishes the driver's
+Cartesian feedback as `PoseStamped`.
 
 ## 编译
 

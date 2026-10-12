@@ -1,3 +1,6 @@
+from glob import glob
+import os
+
 from setuptools import find_packages, setup
 
 package_name = 'xtrainer_bridge'
@@ -10,12 +13,15 @@ setup(
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
+        ('share/' + package_name + '/launch', glob(os.path.join('launch', '*.launch.py'))),
     ],
     install_requires=['setuptools'],
     zip_safe=True,
     maintainer='kira',
     maintainer_email='kira@todo.todo',
-    description='XTrainer bridge: joint state merger + FollowJointTrajectory action server for MoveIt',
+    description=(
+        'XTrainer bridge: joint state merger + FollowJointTrajectory action '
+        'server for MoveIt'),
     license='BSD-3-Clause',
     tests_require=['pytest'],
     entry_points={
@@ -23,6 +29,7 @@ setup(
             'xtrainer_bridge_node = xtrainer_bridge.xtrainer_bridge_node:main',
             'xtrainer_joint_states = xtrainer_bridge.xtrainer_joint_states:main',
             'xtrainer_controller = xtrainer_bridge.xtrainer_controller:main',
+            'cartesian_pose_bridge = xtrainer_bridge.cartesian_pose_bridge:main',
         ],
     },
 )
